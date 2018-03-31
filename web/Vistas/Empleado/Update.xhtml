@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Update"
+                  widgetVar="UpdateEmpleado"
+                  appendTo="@(body)"
+                  closeOnEscape="true"
+                  resizable="false"
+                  responsive="true"
+                  modal="true"  
+                  showEffect="fade"
+                  hideEffect="fade">
+            <h:form id="updateform">     
+                <p:panelGrid id="panelGrid" columns="2" style="position: relative">
+
+                    <p:outputLabel value="DNI"/>
+                    <p:inputText value="#{empleadoController.empleado.DNI}" maxlength="8" required="true" requiredMessage="Ingrese Inicio"/>
+
+                    <p:outputLabel value="Nombre"/>
+                    <p:inputText value="#{empleadoController.empleado.nombre}" maxlength="50" required="true" requiredMessage="Ingrese Fin"/>
+
+                    <p:outputLabel value="Apellido"/>
+                    <p:inputText value="#{empleadoController.empleado.apellido}" maxlength="50" required="true" requiredMessage="Ingrese Fecha"/>
+
+                    <p:outputLabel value="Tipo"/>
+                    <p:selectOneMenu value="#{empleadoController.empleado.privilegio}" style="width: 100%" required="true" requiredMessage="Seleccione Tipo">
+                        <f:selectItem itemLabel="Administrador" itemValue="1"/>
+                        <f:selectItem itemLabel="Vendedor" itemValue="2"/>
+                    </p:selectOneMenu>
+                    
+                    <p:outputLabel value="Usuario"/>
+                    <p:inputText value="#{empleadoController.empleado.usuario}" maxlength="50" required="true" requiredMessage="Ingrese Fecha"/>
+
+                </p:panelGrid>
+
+                <p:separator style="border: none"/>
+                
+                <p:commandButton id="btnUpdate" value="Actualizar" class="btn" style="width: 100%" actionListener="#{empleadoController.update()}" update="updateform :form" oncomplete="handleSubmit(args,'UpdateEmpleado');"/>
+
+                <p:blockUI block="updateform" trigger="btnUpdate">
+                    LOADING<br />
+                    <img src="../../resources/icon/loading_n.gif" style="width: 50px;height: 50px"/>
+                </p:blockUI>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>
+

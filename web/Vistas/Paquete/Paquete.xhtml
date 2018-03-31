@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../Template/Template.xhtml">
+
+            <ui:define name="top">
+                
+                <h:form id="form">
+                    
+                    <p:separator style="border: none"/>
+                    
+                    <p:dataTable id="data"
+                                 value="#{paqueteController.lstPaquete}"
+                                 var="paq"
+                                 reflow="true">
+                        
+                        <f:facet name="header">
+                            Lista de paquetes
+                        </f:facet>
+                        
+                        <p:column headerText="Inicio">
+                            <h:outputText value="#{paq.numInicio}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Fin">
+                            <h:outputText value="#{paq.numFin}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Fecha">
+                            <h:outputText value="#{paq.fecha}"/>
+                        </p:column>
+                        
+                        <f:facet name="footer">
+                            <p:commandButton class="btn" value="Actualizar Lista" actionListener="#{paqueteController.listPaquete()}" update="data"/>
+                        </f:facet>
+                        
+                    </p:dataTable>
+                    
+                    <p:commandButton value="Nuevo Paquete" class="btn" actionListener="#{paqueteController.clean()}" oncomplete="PF('NewPaquete').show();" update=":addform"/>
+
+                </h:form>
+                <ui:include src="Add.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
