@@ -57,11 +57,13 @@
 
                 <p:contextMenu for="data">
                     <p:menuitem value="Editar" oncomplete="PF('UpdateEmpleado').show();" update=":updateform"/>
+                    <p:menuitem value="Cambiar Contraseña" oncomplete="PF('UpdatePassword').show();" update=":updatepasswordform"/>
                 </p:contextMenu>
 
             </h:form>
             <ui:include src="Add.xhtml"/>
             <ui:include src="Update.xhtml"/>
+            <ui:include src="UpdatePassword.xhtml"/>
         </ui:define>
 
     </ui:composition>

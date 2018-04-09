@@ -78,7 +78,7 @@ public class PaqueteController implements Serializable {
                 } else {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La cantidad de chip es incorrecta"));
                 }
-            }else{
+            } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Valores Incorrectos"));
             }
         } catch (Exception e) {
@@ -96,10 +96,8 @@ public class PaqueteController implements Serializable {
     }
 
     /**
-     * *
      * Getter and Setter
-     *
-     * @return *
+     * @return 
      */
     public List<Paquete> getLstPaquete() {
         return LstPaquete;

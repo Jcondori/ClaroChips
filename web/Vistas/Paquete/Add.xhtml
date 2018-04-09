@@ -16,19 +16,23 @@
                   modal="true"  
                   showEffect="fade"
                   hideEffect="fade">
+            
             <h:form id="addform">     
                 <p:panelGrid id="panelGrid" columns="2" style="position: relative">
 
-                    <p:outputLabel value="Inicio"/>
-                    <p:inputText value="#{paqueteController.paquete.numInicio}" maxlength="20" required="true" requiredMessage="Ingrese Inicio">
+                    <p:outputLabel value="Inicio" for="addInicio"/>
+                    <p:inputText  id="addInicio" value="#{paqueteController.paquete.numInicio}" maxlength="20" required="true" requiredMessage="Ingrese Inicio" validatorMessage="Ingrese un numero Valido">
                         <p:ajax event="blur" listener="#{paqueteController.facilidad()}" update="addfin"/>
+                        <f:validateLength minimum="18"/>
                     </p:inputText>
 
                     <p:outputLabel value="Fin" for="addfin"/>
-                    <p:inputText id="addfin" value="#{paqueteController.paquete.numFin}" maxlength="20" required="true" requiredMessage="Ingrese Fin"/>
+                    <p:inputText id="addfin" value="#{paqueteController.paquete.numFin}" maxlength="20" required="true" requiredMessage="Ingrese Fin" validatorMessage="Ingrese un numero Valido">
+                    <f:validateLength minimum="18"/>
+                    </p:inputText>
 
-                    <p:outputLabel value="Fecha"/>
-                    <p:inputText value="#{paqueteController.paquete.fecha}" maxlength="10" required="true" requiredMessage="Ingrese Fecha"/>
+                    <p:outputLabel value="Fecha" for="addfecha"/>
+                    <p:inputText id="addfecha" value="#{paqueteController.paquete.fecha}" maxlength="10" required="true" requiredMessage="Ingrese Fecha"/>
 
                 </p:panelGrid>
 

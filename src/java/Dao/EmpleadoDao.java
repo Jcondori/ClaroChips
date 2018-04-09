@@ -38,6 +38,30 @@ public class EmpleadoDao extends DAO{
         }
     }
     
+    public Empleado startSession(String user, String pass) throws Exception {
+        this.Conectar();
+        Empleado model = null;
+        ResultSet rs;
+        try {
+            String sql = "SELECT CODEMP,(NOMEMP || ' ' || APEEMP) AS NOMBRE,PRIEMP FROM EMPLEADO WHERE USUEMP LIKE ? AND PASEMP LIKE ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, user);
+            ps.setString(2, pass);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                model = new Empleado();
+                model.setCodigo(rs.getString("CODEMP"));
+                model.setNombre(rs.getString("NOMBRE"));
+                model.setPrivilegio(rs.getString("PRIEMP"));
+            }
+            return model;
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            this.Cerrar();
+        }
+    }
+    
     public void insert(Empleado model) throws Exception{
         this.Conectar();
         try {
@@ -55,6 +79,19 @@ public class EmpleadoDao extends DAO{
         }
     }
     
+    public void cambiarPassword(String Codigo,String Password) throws Exception{
+        this.Conectar();
+        try {
+            String sql = "UPDATE EMPLEADO SET PASEMP = ? WHERE CODEMP = ?";
+            PreparedStatement ps = this.getCn().prepareCall(sql);
+            ps.setString(1, Password);
+            ps.setString(2, Codigo);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
     public void update(Empleado model) throws Exception{
         this.Conectar();
         try {
@@ -64,8 +101,8 @@ public class EmpleadoDao extends DAO{
             ps.setString(2, model.getNombre());
             ps.setString(3, model.getApellido());
             ps.setString(4, model.getUsuario());
-            ps.setString(6, model.getPrivilegio());
-            ps.setString(7, model.getCodigo());
+            ps.setString(5, model.getPrivilegio());
+            ps.setString(6, model.getCodigo());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw e;

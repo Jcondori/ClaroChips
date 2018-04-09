@@ -2,7 +2,7 @@ package Models;
 
 public class Chips {
 
-    private String Codigo, CodPaquete, CodEmpleado, ICCID, Fecha, CodModalidad, Estado;
+    private String Codigo, CodPaquete, CodEmpleado, ICCID, Fecha, CodModalidad, Estado, NomEmpleado;
 
     public String getCodigo() {
         return Codigo;
@@ -58,6 +58,14 @@ public class Chips {
 
     public void setCodModalidad(String CodModalidad) {
         this.CodModalidad = CodModalidad;
+    }
+
+    public String getNomEmpleado() {
+        return NomEmpleado;
+    }
+
+    public void setNomEmpleado(String NomEmpleado) {
+        this.NomEmpleado = NomEmpleado;
     }
 
 }

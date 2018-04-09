@@ -7,13 +7,79 @@
 
     <body>
 
-        <ui:composition template="./Template.xhtml">
+    <ui:composition template="./Template.xhtml">
 
-            <ui:define name="top">
-                top
-            </ui:define>
+        <ui:define name="top">
 
-        </ui:composition>
+            <h:form id="form">
 
-    </body>
+                <p:separator style="border: none"/>
+                <div class="row">   
+                    <div class="col s12 l8">
+                        <div class="">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col s4 l1">
+                                        <p:outputLabel for="fecha" value="Fecha"/>
+                                    </div>
+                                    <div class="col s6 l2 center-align">
+                                        <p:selectOneMenu id="fecha" value="#{chipsController.fecha}" class="col s12">
+                                            <f:selectItem class="center-align" itemLabel="Hoy" itemValue=""/>
+                                            <f:selectItems value="#{chipsController.listaFechas}" var="fech" itemLabel="#{fech.fecha}" itemValue="#{fech.fecha}"/>
+                                            <p:ajax event="change" listener="#{chipsController.listarEmpleadosCantidad()}" update="form"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col s6 l2 center-align">
+                                        <p:commandButton class="btn" value="Actualizar" actionListener="#{chipsController.actualizarDashboard()}" update="form"/>
+                                    </div>
+                                    
+                                </div>
+
+                                <table class="centered highlight">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Cantidad</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <ui:repeat value="#{chipsController.empleadosCantidad}" var="chip">
+                                        <tr>
+                                            <td>#{chip.nomEmpleado}</td>
+                                            <td>#{chip.estado}</td>
+                                        </tr>
+                                    </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s12 l1">
+
+                    </div>
+                    <div class="col s12 l3">
+                        <div class="card">
+                            <div class="row center-align">
+                                <div class="card-content cyan lighten-5">
+                                    <span class="back-text" style="font-family: roboto;font-size: 70px">
+                                        #{chipsController.totalChipsActivados}
+                                    </span>
+                                </div>
+                                <div class="card-content amber lighten-5">
+                                    <span class="back-text" style="font-family: roboto;font-size: 70px">
+                                        5000
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</body>
 </html>

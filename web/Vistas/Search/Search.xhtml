@@ -7,28 +7,35 @@
 
     <body>
 
-        <ui:composition template="./../Template/Template.xhtml">
+    <ui:composition template="./../Template/Template.xhtml">
 
-            <ui:define name="top">
-                
-                <h:form id="form">
-                    
-                    <p:separator style="border: none"/>
-                    
-                    <p:selectOneMenu value="#{chipsController.chips.codModalidad}" required="true" requiredMessage="Seleccione odalidad">
-                        <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
-                        <f:selectItems value="#{modalidadController.lstModalidadCombo}" var="modal" itemLabel="#{modal.modalidad}" itemValue="#{modal.codigo}"/>
-                    </p:selectOneMenu>
-                    
-                    <p:autoComplete style="width: 100%" value="#{chipsController.chips.ICCID}" completeMethod="#{chipsController.autocompleteICCID}" maxResults="5" forceSelection="true" emptyMessage="No se encontro" required="true" requiredMessage="Ingrese ICCID"/>
-                    
-                    <p:commandButton class="btn" value="Confirmar" actionListener="#{chipsController.confirmarChip()}" update="form"/>
-                    
-                </h:form>                
-                
-            </ui:define>
+        <ui:define name="top">
 
-        </ui:composition>
+            <h:form id="form">
 
-    </body>
+                <p:separator style="border: none"/>
+
+                <div class="row">
+                    <div class="col s4 l1">
+                        <p:outputLabel class="total" value="Modalidad" for="mod"/>
+                    </div>
+                    <div class="col s8 l2">
+                        <p:selectOneMenu id="mod" class="total" value="#{chipsController.chips.codModalidad}" required="true" requiredMessage="Seleccione odalidad">
+                            <f:selectItem itemLabel="Seleccione" noSelectionOption="true"/>
+                            <f:selectItems value="#{modalidadController.lstModalidadCombo}" var="modal" itemLabel="#{modal.modalidad}" itemValue="#{modal.codigo}"/>
+                        </p:selectOneMenu>
+                    </div>   
+                </div>
+
+                <p:autoComplete style="width: 100%" value="#{chipsController.chips.ICCID}" completeMethod="#{chipsController.autocompleteICCID}" maxResults="5" forceSelection="true" emptyMessage="No se encontro" required="true" requiredMessage="Ingrese ICCID"/>
+
+                <p:commandButton class="btn" value="Confirmar" actionListener="#{chipsController.confirmarChip()}" update="form"/>
+
+            </h:form>                
+
+        </ui:define>
+
+    </ui:composition>
+
+</body>
 </html>

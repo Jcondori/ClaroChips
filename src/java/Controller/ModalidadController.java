@@ -36,6 +36,10 @@ public class ModalidadController implements Serializable {
         }
     }
 
+    /**
+     * Getter and Setter
+     * @return 
+     */
     public List<Modalidad> getLstModalidadCombo() {
         return LstModalidadCombo;
     }

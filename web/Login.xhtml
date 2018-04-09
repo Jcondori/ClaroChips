@@ -14,7 +14,7 @@
 
         <title>Iniciar Session</title> <meta charset="utf-8"/>
         <!--Seguridad de Sesiones de la Aplicacion-->    
-        <f:event type="preRenderView" listener="#{usuarioController.securityLogin()}"/>
+        <f:event type="preRenderView" listener="#{empleadoController.securityLogin()}"/>
 
         <!-- Favicons-->
         <link rel="icon" href="resources/icon/logo.png" sizes="32x32"/>
@@ -36,7 +36,7 @@
         </div> 
         <!-- End Page Loading -->
 
-        <p:growl id="msg" autoUpdate="true" globalOnly="true" />
+            <p:growl id="msg" autoUpdate="true" globalOnly="true" />
 
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
@@ -50,21 +50,21 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
-                            <p:inputText required="true" requiredMessage="Ingrese Usuario" class="validate" id="username" value="#{usuarioController.user}"/>
+                            <p:inputText class="validate" id="username" value="#{empleadoController.user}" required="true" requiredMessage="Ingrese Usuario"/>
                             <label for="username" class="active">Usuario</label>
                         </div>
                     </div>
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">lock_outline</i>
-                            <p:inputText class="validate" value="#{usuarioController.pass}" id="password" type="password" required="true" requiredMessage="Ingrese su Contraseña"/>
+                            <p:inputText class="validate" value="#{empleadoController.pass}" id="password" type="password" required="true" requiredMessage="Ingrese su Contraseña"/>
                             <label for="password" class="active">Contraseña</label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <p:commandButton id="btnlogin" onmousemove="buton()" actionListener="#{usuarioController.startSession()}" value="Login"/>
+                            <p:commandButton id="btnlogin" onmousemove="buton()" actionListener="#{empleadoController.startSession()}" value="Login"/>
                             <p:blockUI block=":form" trigger="btnlogin">
                                 LOADING<br />
                                 <img src="resources/icon/loading_n.gif" style="width: 50px;height: 50px"/>
