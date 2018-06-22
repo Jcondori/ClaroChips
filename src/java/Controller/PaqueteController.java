@@ -53,7 +53,7 @@ public class PaqueteController implements Serializable {
         try {
             dao = new PaqueteDao();
             dao2 = new ChipsDao();
-            if (paquete.getNumInicio().length() < 18 || paquete.getNumFin().length() < 18) {
+            if (paquete.getNumInicio().length() <= 18 || paquete.getNumFin().length() <= 18) {
 
                 String Valor = paquete.getNumInicio().substring(0, 9); //Extrae la primera parte que es igual para el inicio y fin
                 int start = Integer.valueOf(paquete.getNumInicio().substring(paquete.getNumInicio().length() - 9)); //Extrae la segunda partte del inicio
@@ -97,7 +97,8 @@ public class PaqueteController implements Serializable {
 
     /**
      * Getter and Setter
-     * @return 
+     *
+     * @return
      */
     public List<Paquete> getLstPaquete() {
         return LstPaquete;
